@@ -5,7 +5,7 @@ import { getUser } from "@/lib/getUser";
 import { connectDB } from "@/lib/mongodb";
 
 export async function GET() {
-  connectDB();
+  await connectDB();
   const auth = await getUser();
   const user = await AuthModel.findOne({ email: auth.user.email });
   let isPaid = user.hasPaid;
@@ -26,6 +26,7 @@ export async function GET() {
 }
 
 export async function POST(req) {
+  await connectDB();
   const { name, title, number, email, skills, education, aboutYourself } =
     await req.json();
 
