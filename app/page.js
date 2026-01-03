@@ -235,26 +235,6 @@ const Page = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-4">
-            <button
-              type="button"
-              onClick={() => signIn("google")}
-              className="flex items-center justify-center gap-3 bg-white/5 border border-white/10 hover:bg-white/10 py-4 rounded-2xl transition-all text-sm font-bold text-slate-300 group"
-            >
-              <Chrome
-                size={18}
-                className="text-indigo-400 group-hover:scale-110 transition-transform"
-              />
-              Sign in with Google
-            </button>
-            {/* <button
-              onClick={() => signIn("google")}
-              className="flex items-center justify-center w-full bg-white text-[#254F1A] rounded-xl shadow-lg px-6 py-3 text-base font-semibold hover:bg-gray-100 transition-all focus:outline-none focus:ring-4 focus:ring-[#254F1A]/30"
-            >
-              Continue with Google
-            </button> */}
-          </div>
-
           <p className="text-center text-sm text-slate-500">
             Already have a account?{" "}
             <a
