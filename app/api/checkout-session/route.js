@@ -11,7 +11,7 @@ export async function POST(req) {
   await connectDB();
   const { email } = await req.json();
   const auth = await getUser();
-  const user = await userModel.findOne({ Useremail: email });
+  const user = await userModel.findOne({ Useremail: auth.user.email });
   console.log("iamuserere", user);
 
   const session = await stripe.checkout.sessions.create({
