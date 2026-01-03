@@ -1,23 +1,29 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { CheckCircle2 } from "lucide-react";
 
 export default function AlreadyPaidPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const id = searchParams.get("userId");
+
+  // Optional safety (recommended)
+  if (!id) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#0b0f19] text-white">
+        Invalid access
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-[#0b0f19] px-6">
-      <div
-        className="w-full max-w-xl bg-gray-900/60 backdrop-blur-xl
-        border border-gray-800 rounded-3xl shadow-2xl p-10 text-center"
-      >
+      <div className="w-full max-w-xl bg-gray-900/60 backdrop-blur-xl border border-gray-800 rounded-3xl shadow-2xl p-10 text-center">
         {/* Badge */}
-        <div
-          className="inline-flex items-center gap-2 px-4 py-1.5 mb-6
-          rounded-full bg-indigo-500/10 border border-indigo-500/20"
-        >
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full bg-indigo-500/10 border border-indigo-500/20">
           <CheckCircle2 size={16} className="text-indigo-400" />
           <span className="text-xs font-black tracking-widest uppercase text-indigo-400">
             Subscription Active
@@ -39,24 +45,17 @@ export default function AlreadyPaidPage() {
         </p>
 
         {/* Status Card */}
-        <div
-          className="flex items-center justify-center gap-3
-          bg-indigo-500/10 border border-indigo-500/30
-          text-indigo-300 font-semibold p-4 rounded-2xl mb-10"
-        >
+        <div className="flex items-center justify-center gap-3 bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 font-semibold p-4 rounded-2xl mb-10">
           <CheckCircle2 size={20} />
           AURA Pro — Fully Enabled
         </div>
 
         {/* Action */}
         <button
-          onClick={() => router.push("/Resumes")}
-          className="px-10 py-4 rounded-full
-            bg-white text-black
-            font-black text-xs uppercase tracking-[0.3em]
-            hover:bg-indigo-500 hover:text-white
-            transition-all transform hover:scale-105 active:scale-95
-            shadow-xl shadow-indigo-500/10"
+          onClick={() => router.push(`/Resumes/${id}`)}
+          className="px-10 py-4 rounded-full bg-white text-black font-black text-xs uppercase tracking-[0.3em]
+          hover:bg-indigo-500 hover:text-white transition-all transform hover:scale-105 active:scale-95
+          shadow-xl shadow-indigo-500/10"
         >
           Go Back to Dashboard
         </button>

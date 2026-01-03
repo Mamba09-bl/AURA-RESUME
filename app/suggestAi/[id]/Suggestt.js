@@ -166,9 +166,9 @@ export default function suggestClient({ resume }) {
                 if (section === "education") {
                   setShowEdit(result.user.education || "");
                 } else if (section === "skills") {
-                  setShowEdit(result.all.skills || "");
+                  setShowEdit(result.user.skills || "");
                 } else if (section === "aboutYourself") {
-                  setShowEdit(result.all.aboutYourself || "");
+                  setShowEdit(result.user.aboutYourself || "");
                 }
 
                 setCompEdit(true);

@@ -11,8 +11,11 @@ export async function GET() {
   const auth = await getUser();
 
   const allChat = await signup.findOne({ email: auth.user.email });
+  const chatid = await userModel.findOne({ Useremail: auth.user.email });
+  let id = chatid._id;
   return Response.json({
     alreadyPaid: allChat.hasPaid === true,
+    id,
   });
 }
 

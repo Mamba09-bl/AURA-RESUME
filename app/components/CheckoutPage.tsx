@@ -16,8 +16,8 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       const result = await ress.json();
       console.log(result);
       
-      if (result.alreadyPaid) {
-        router.replace("/alreadyPaid");
+     if (result.alreadyPaid) {
+        router.push(`/alreadyPaid/?userId=${result.id}`);
       }
       
     if (session?.user?.email) {
