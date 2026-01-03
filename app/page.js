@@ -224,17 +224,6 @@ const Page = () => {
             </button>
           </form>
 
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-white/5"></div>
-            </div>
-            <div className="relative flex justify-center text-xs uppercase tracking-widest">
-              <span className="bg-[#020617] px-4 text-slate-600 font-bold tracking-widest">
-                or continue with
-              </span>
-            </div>
-          </div>
-
           <p className="text-center text-sm text-slate-500">
             Already have a account?{" "}
             <a
