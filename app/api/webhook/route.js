@@ -33,7 +33,7 @@ export async function POST(req) {
 
     if (email) {
       await signup.findOneAndUpdate(
-        { email },
+        { Useremail: email },
         { $set: { hasPaid: true, freeMessagesUsed: 0 } }
       );
     }
