@@ -2,7 +2,7 @@ import Stripe from "stripe";
 import { headers } from "next/headers";
 import signup from "@/modules/signup";
 import { connectDB } from "@/lib/mongodb";
-import { getUser } from "@/lib/getUser";
+
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -11,7 +11,7 @@ export async function POST(req) {
   await connectDB();
 
   const body = await req.text();
-  const auth = await getUser();
+
 
   const headerList = await headers();
   const signature = headerList.get("stripe-signature");
@@ -34,12 +34,13 @@ export async function POST(req) {
     const email = session.customer_email;
 
     if (email) {
-      await signup.findOneAndUpdate(
-        { Useremail: email },
-        { $set: { hasPaid: true, freeMessagesUsed: 0 } }
-      );
+       const updatedUser = await signup.findOneAndUpdate(
+      { Useremail: email },
+      { $set: { hasPaid: true, freeMessagesUsed: 0 } },
+      { new: true }
+    );
     }
-const updatedUser = signup.findOne({ Useremail: auth.user.email });
+
     console.log("✅ Payment successful:", email);
     console.log("updatedUser", updatedUser);
   }
