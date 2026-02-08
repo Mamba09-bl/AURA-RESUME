@@ -2,6 +2,7 @@ import Stripe from "stripe";
 import { headers } from "next/headers";
 import signup from "@/modules/signup";
 import { connectDB } from "@/lib/mongodb";
+import { getUser } from "@/lib/getUser";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -37,9 +38,10 @@ export async function POST(req) {
         { $set: { hasPaid: true, freeMessagesUsed: 0 } }
       );
     }
-
+const updatedUser = signup.findOne({ Useremail: auth.user.email });
     console.log("✅ Payment successful:", email);
   }
 
   return new Response("OK", { status: 200 });
 }
+
