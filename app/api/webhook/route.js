@@ -11,6 +11,7 @@ export async function POST(req) {
   await connectDB();
 
   const body = await req.text();
+  const auth = await getUser();
 
   const headerList = await headers();
   const signature = headerList.get("stripe-signature");
