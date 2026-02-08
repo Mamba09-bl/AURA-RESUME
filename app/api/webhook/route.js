@@ -40,6 +40,7 @@ export async function POST(req) {
     }
 const updatedUser = signup.findOne({ Useremail: auth.user.email });
     console.log("✅ Payment successful:", email);
+    console.log("updatedUser", updatedUser);
   }
 
   return new Response("OK", { status: 200 });
